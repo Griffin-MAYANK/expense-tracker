@@ -1,27 +1,11 @@
 'use client'
 
 import React, { useEffect } from 'react'
-import { useUiStore, useNotificationStore, useUserStore } from '@/store'
-import { useAuth } from '@/hooks'
+import { useUiStore, useNotificationStore } from '@/store'
 
 export const AppProviders: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { theme } = useUiStore()
   const { notifications } = useNotificationStore()
-  const { user, isLoading, setLoading } = useUserStore()
-  const { getCurrentUser } = useAuth()
-
-  useEffect(() => {
-    // Initialize user on mount
-    const initUser = async () => {
-      setLoading(true)
-      await getCurrentUser()
-      setLoading(false)
-    }
-
-    if (!user && !isLoading) {
-      initUser()
-    }
-  }, [])
 
   // Apply theme
   useEffect(() => {

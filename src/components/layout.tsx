@@ -2,20 +2,34 @@
 
 import React, { useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
-import { useAuthState } from '@/hooks'
 import { Loader } from './ui'
 import Link from 'next/link'
-import { useUiStore } from '@/store'
+import { useUserStore, useUiStore } from '@/store'
+import { createClient } from '@/lib/supabase/client'
 
 export const ProtectedLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const router = useRouter()
-  const { user, isLoading, checkAuth } = useAuthState()
+  const { user, isLoading, setUser, setLoading } = useUserStore()
   const { sidebarOpen, toggleSidebar } = useUiStore()
   const pathname = usePathname()
 
   useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        setLoading(true)
+        const supabase = createClient()
+        const { data } = await supabase.auth.getUser()
+        setUser(data.user)
+      } catch (error) {
+        console.error('Auth check error:', error)
+        setUser(null)
+      } finally {
+        setLoading(false)
+      }
+    }
+
     checkAuth()
-  }, [])
+  }, [setUser, setLoading])
 
   if (isLoading) {
     return <Loader fullScreen />

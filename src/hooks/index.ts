@@ -43,7 +43,8 @@ export const useAuth = () => {
       const response = await authService.login(email, password)
       setIsLoading(false)
 
-      if (response.success) {
+      if (response.success && response.data?.user) {
+        setUser(response.data.user)
         addNotification({
           type: 'success',
           title: 'Success',
@@ -59,7 +60,7 @@ export const useAuth = () => {
         return false
       }
     },
-    [addNotification]
+    [addNotification, setUser]
   )
 
   const logout = useCallback(async () => {
