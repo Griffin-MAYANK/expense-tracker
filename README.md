@@ -2,9 +2,6 @@
 
 A modern, full-featured expense tracking application built with Next.js, TypeScript, and Supabase.
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-
 ## 🎯 Features
 
 ### Core Features
@@ -28,76 +25,6 @@ A modern, full-featured expense tracking application built with Next.js, TypeScr
 - 🎨 Customizable categories and colors
 - 🌍 Multi-currency support
 - 🔒 Row-level security with Supabase RLS
-
-## 🛠 Tech Stack
-
-- **Frontend**: Next.js 14, React 18, TypeScript
-- **Styling**: Tailwind CSS 3
-- **Database**: Supabase (PostgreSQL)
-- **Authentication**: Supabase Auth (JWT)
-- **State Management**: Zustand
-- **Charts**: Recharts
-- **Utilities**: date-fns, axios, lucide-react
-
-## 📋 Prerequisites
-
-- Node.js 18+ and npm/yarn
-- Supabase account ([supabase.com](https://supabase.com))
-- Git
-
-## 🚀 Quick Start
-
-### 1. Clone and Setup
-
-```bash
-# Clone the repository
-git clone <repository-url>
-cd expense-tracker-pro
-
-# Install dependencies
-npm install
-```
-
-### 2. Setup Supabase
-
-1. Create a new Supabase project at [supabase.com](https://supabase.com)
-2. Go to SQL Editor and run the migration file:
-   - Copy content from `supabase/migrations/001_init.sql`
-   - Paste into Supabase SQL Editor and execute
-
-3. Get your Supabase credentials:
-   - Project URL: Settings → API
-   - Anon Key: Settings → API
-   - Service Role Key: Settings → API (for seeding)
-
-### 3. Configure Environment Variables
-
-```bash
-# Copy the example env file
-cp .env.local.example .env.local
-
-# Edit .env.local with your Supabase credentials
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
-SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
-```
-
-### 4. Seed Demo Data
-
-```bash
-# Create demo user and default categories
-npm run seed
-```
-
-This creates:
-- Demo user: `demo@example.com` / `Demo@1234`
-- Default categories for income and expenses
-- Sample accounts (Cash, Debit Card, Credit Card, Savings)
-
-### 5. Run Development Server
-
-```bash
-npm run dev
 ```
 
 Visit [http://localhost:3000](http://localhost:3000) in your browser.
